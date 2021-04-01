@@ -1,0 +1,42 @@
+use PamDoo
+create table UserDetail(
+	uDetailID int primary key identity(100,1),
+	realname nvarchar(30),
+	nickname nvarchar(30),
+	phonenumber nvarchar(30),
+	birthday date,
+	userphotoname  nvarchar(50),
+	gender nvarchar(5),
+	location  nvarchar(30),
+	fk_purse_id int
+	)
+	create table UserAccount(
+	accountID int primary key identity(100,1),
+	acoount_index nvarchar(30),
+	 CONSTRAINT AK_acoount_index UNIQUE(acoount_index) ,
+	 password nvarchar(30) not null,
+	 fk_accountDetail_id int references UserDetail(uDetailID),
+	 fk_levelDetail_id int,
+	 fk_accountCat int,
+)
+	create table FoodTag(
+	  FoodTagID int primary key not null identity(1,1),
+	  FoodTagName nvarchar(10)
+	)
+	create table foodtag_user(
+		pk_food_user int primary key not null identity(1,1),
+		fk_userAccount_id int references UserAccount(accountID),
+		fk_foodTag_id int references FoodTag(FoodTagID)
+		)
+	create table Employee(
+	EmployeeID int primary key not null identity(100,1),
+	EmployeeName nvarchar(20) not null,
+	 CONSTRAINT AK_EmployeeName UNIQUE(EmployeeName)
+	 )
+
+
+	select * from FoodTag
+	select * from UserAccount
+	select * from UserDetail
+
+	insert into FoodTag values('火鍋'),('小吃'),('酒吧'),('炸物'),('排餐'),('燒烤')

@@ -44,6 +44,7 @@ public class UserAccount {
 	@ManyToMany(mappedBy="userAccounts")
 	private Set<FoodTag> foodtags =new HashSet<FoodTag>();
 	
+	@Transient
 	@Column(name="fk_levelDetail_id")
 	private Integer fk_levelDetail_id;
 	
